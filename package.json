@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server/server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": true,
@@ -11,6 +12,10 @@
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "mysql2": "^3.20.0"
+    "mysql2": "^3.20.0",
+    "nodemon": "^3.1.14"
+  },
+  "devDependencies": {
+    "prettier": "3.8.1"
   }
 }
