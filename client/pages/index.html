@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./../styles.css">
+</head>
+<body>
+    <div id="messages"></div>
+    <div id="form-container">
+        <div id="register-container">
+            <form action="#" id="register-form" method="post" class="space-y-4 p-6 bg-slate-800 rounded-lg text-white">
+                <fieldset> Register
+                    <div class="form-item">
+                        <label class="block mb-1">First name</label>
+                        <input type="text" id="register-user-first-name-input" name="first_name" placeholder="First name" required class="w-full p-2 rounded bg-slate-700 border border-slate-600">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="block mb-1">Last name</label>
+                        <input type="text" id="register-user-last-name-input" name="last_name" placeholder="Last name" required class="w-full p-2 rounded bg-slate-700 border border-slate-600">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="block mb-1">Password</label>
+                        <input type="password" id="register-user-pass-input" name="password" placeholder="Strong password" required class="w-full p-2 rounded bg-slate-700 border border-slate-600">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="block mb-1">Confirm Password</label>
+                        <input type="password" id="register-user-pass-confirm-input" name="password_confirm" placeholder="Repeat your password" required class="w-full p-2 rounded bg-slate-700 border border-slate-600">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="block mb-1">Age</label>
+                        <input type="number" id="register-user-age-input" min="0" name="age" placeholder="Age" required class="w-full p-2 rounded bg-slate-700 border border-slate-600">
+                    </div>
+
+                    <div class="form-item">
+                        <label class="block mb-1">Gender</label>
+                        <input type="text" id="register-user-gender-input" name="gender" placeholder="Gender" required class="w-full p-2 rounded bg-slate-700 border border-slate-600">
+                    </div>
+                </fieldset>
+                <button id="register-user-submit-button" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded font-bold transition-colors">
+                    Register
+                </button>
+            </form>
+        </div>
+        <div id="login-container">
+            <form id="login-form" action="#" method="post">
+                <fieldset> Login
+                    <div class="form-item">
+                        <label for="login-username">First name</label>
+                        <input type="text" id="login-first-name-input" name="username" placeholder="last-name" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="login-username">Last name</label>
+                        <input type="text" id="login-last-name-input" name="username" placeholder="last-name" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" placeholder="Password" required>
+                    </div>
+                </fieldset>
+                <button id="login-submit-button" type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="../index.js" type="module"></script>
+</html>

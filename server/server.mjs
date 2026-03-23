@@ -24,7 +24,7 @@ app.post('/api/users/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-
+    console.log(password);
     const pool = await connectToMySQL()
 
     const response = await queryMySQL(pool,
@@ -32,4 +32,23 @@ app.post('/api/users/register', async (req, res) => {
         [firstName, lastName, age,gender,hashedPassword])
 
     res.send(response.status);
+})
+
+app.post('/api/users/login', async (req, res) => {
+    const {firstName, lastName ,password} = req.body;
+
+    const pool = await connectToMySQL()
+
+    const response = await queryMySQL(pool,
+        'SELECT * FROM users WHERE first_name = ? AND last_name = ? LIMIT 1',
+        [firstName, lastName]);
+
+    const isMatch = await bcrypt.compare(password, response[0].password_hash);
+
+    if (isMatch) {
+        res.status(200).json(response[0]);
+    } else {
+        res.send.message("user not found");
+    }
+
 })
