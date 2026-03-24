@@ -1,12 +1,14 @@
-﻿import {logout, getAuth} from "../authFunction/getAuth.js";
+﻿import {getAuth} from "../authFunction/getAuth.js";
+import logout from "../authFunction/logout.js";
 
-export function renderNavBar() {
+export async function  renderNavBar() {
     const navbar = document.getElementById("navbar");
     const navList = document.getElementById("nav-list");
 
-    let isUserLoggedIn = localStorage.getItem("loggedInUser");
-
-    if (isUserLoggedIn) {
+    console.log("max sem");
+    let user = await getAuth();
+    
+    if (user && user.id) {
         //make feed link
         const feedLink = document.createElement("a");
         feedLink.href = "./feed.html";
@@ -33,9 +35,7 @@ export function renderNavBar() {
         const loggedInUser = document.createElement("p");
         loggedInUser.classList.add("nav-item");
 
-        const user = getAuth()
-
-        loggedInUser.innerHTML = `Hello ${user.first_name} ${user.last_name}!`;
+        loggedInUser.innerHTML = `Hello ${user.firstName} ${user.lastName}!`;
 
         //logout button
         const logoutLink = document.createElement("p");

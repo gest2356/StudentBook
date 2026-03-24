@@ -3,10 +3,22 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import {connectToMySQL, queryMySQL} from "../db/dbContext.mjs";
+import jwt from 'jsonwebtoken';
+import verifyToken from "./middleWare/verifyTocken.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors())
+
+const corsOptions = {
+    origin: 'http://localhost:63342',
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 
 const port = 3000
 
@@ -46,9 +58,39 @@ app.post('/api/users/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, response[0].password_hash);
 
     if (isMatch) {
-        res.status(200).json(response[0]);
-    } else {
-        res.send.message("user not found");
-    }
+        const token = jwt.sign(
+            {_user_id: response[0].user_id, _firstName: response[0].first_name, _lastName: response[0].last_name},
+            "super_secret_password" || 'super_secret_token',
+            {expiresIn: '1h'}
+        );
 
+        res.cookie('super_secret_token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: 3600000,
+        }).json({ message: 'Logged in' });
+
+    } else {
+    return res.status(401).json({ message: "user not found" });
+    }
+})
+
+app.get('/api/users/me', verifyToken, async (req, res) => {
+
+
+    res.status(200).json({
+        firstName: req.user._firstName,
+        lastName: req.user._lastName,
+        id: req.user._user_id,
+    })
+
+})
+
+app.post('/api/users/logout', async (req, res) => {
+    res.clearCookie('super_secret_token', {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax',
+    }).json({ message: 'Logged out' });
 })

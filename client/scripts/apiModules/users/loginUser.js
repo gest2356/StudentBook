@@ -29,6 +29,7 @@ export default async function loginUser() {
 
         const res = await fetch('http://localhost:3000/api/users/login', {
             method: 'POST',
+            credentials: 'include',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(userLoginCrudentuales)
         })
@@ -37,7 +38,6 @@ export default async function loginUser() {
 
 
         if (res.status === 200) {
-            localStorage.setItem('loggedInUser', JSON.stringify(json));
             putNewMassage("login successful", "green");
         } else {
             putNewMassage("login failed", "red");

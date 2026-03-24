@@ -1,16 +1,15 @@
 ﻿
-export function getAuth() {
-    if (localStorage.getItem("loggedInUser")) {
-        return JSON.parse(localStorage.getItem("loggedInUser"));
-    } else {
-        return false
-    }
-}
+export async function getAuth() {
+    const res = await fetch("http://localhost:3000/api/users/me", {
+        method: "GET",
+        credentials: "include",
+    });
 
-export function logout(){
-    if (localStorage.getItem("loggedInUser")) {
-        localStorage.removeItem("loggedInUser");
-    } else {
-        return false;
+    if (!res.ok) {
+        throw new Error(res.statusText);
     }
+
+    const userData = await res.json()
+    console.log(userData);
+    return userData;
 }
