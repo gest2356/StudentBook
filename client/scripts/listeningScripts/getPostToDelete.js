@@ -7,10 +7,13 @@ export async function getPostToDelete() {
         deleteButton.addEventListener("click", (e) => {
             e.preventDefault();
 
-            const idToDelete = deleteButton.parentElement.getAttribute('data-id');
-            const userId = deleteButton.parentElement.children[1].getAttribute('data-id');
+            const alertRes = confirm("Are you sure you want to delete this post?");
+            if (alertRes) {
+                const idToDelete = deleteButton.parentElement.getAttribute('data-id');
+                const userId = deleteButton.parentElement.children[1].getAttribute('data-id');
 
-            deletePost(idToDelete, userId);
+                deletePost(idToDelete, userId);
+            }
         })
     })
 }

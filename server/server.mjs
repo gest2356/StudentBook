@@ -114,3 +114,12 @@ app.delete('/api/posts/delete', verifyToken, async (req, res) => {
     res.status(401).json({message: "the user which is logged in, is not the user who made this post"})
 
 })
+
+app.post('/api/posts/postnew', verifyToken, async (req, res) => {
+    const {title, content} = req.body;
+    const userId = req.user._user_id
+
+    const response = await queryMySQL("insert into posts(title, content, created_at, user_id) VALUES (?,?,NOW(),?)", [title, content, userId]);
+
+    res.send(response);
+})
