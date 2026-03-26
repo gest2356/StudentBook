@@ -100,3 +100,18 @@ app.get('/api/posts/getall', async (req, res) => {
 
     res.json(response);
 })
+
+app.delete('/api/posts/delete', verifyToken, async (req, res) => {
+    const {postId, userId} = req.body;
+    const userIdToChack = req.user._user_id
+
+    console.log(userId)
+    console.log(userIdToChack)
+
+    if (userIdToChack === userId) {
+        const response = await queryMySQL('DELETE FROM posts WHERE post_id = ? AND user_id = ?', [postId, userId]);
+        res.send(response);
+    }
+    res.status(401).json({message: "the user which is logged in, is not the user who made this post"})
+
+})
