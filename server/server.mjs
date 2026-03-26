@@ -96,7 +96,6 @@ app.post('/api/users/logout', async (req, res) => {
 
 app.get('/api/posts/getall', async (req, res) => {
     const response = await queryMySQL("SELECT p.*, CONCAT(u.first_name, ' ', u.last_name) AS author FROM users u INNER JOIN posts p ON p.user_id = u.user_id")
-    console.log(response)
 
     res.json(response);
 })
@@ -108,7 +107,7 @@ app.delete('/api/posts/delete', verifyToken, async (req, res) => {
     console.log(userId)
     console.log(userIdToChack)
 
-    if (userIdToChack === userId) {
+    if (userIdToChack == userId) {
         const response = await queryMySQL('DELETE FROM posts WHERE post_id = ? AND user_id = ?', [postId, userId]);
         res.send(response);
     }

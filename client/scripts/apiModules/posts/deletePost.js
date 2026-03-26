@@ -18,6 +18,7 @@ export async function deletePost(postId, userId) {
 
     if (res.status === 200) {
         messageUser("delete was successfully deleted", "green")
+        window.location.reload()
     } else {
         messageUser("delete was not successfully deleted", "red")
     }
