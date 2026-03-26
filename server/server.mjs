@@ -94,3 +94,11 @@ app.post('/api/users/logout', async (req, res) => {
         sameSite: 'lax',
     }).json({ message: 'Logged out' });
 })
+
+
+app.get('/api/posts/getall', async (req, res) => {
+    const pool = await connectToMySQL()
+    const response = await queryMySQL(pool, 'SELECT * FROM posts')
+
+    res.json(response);
+})
