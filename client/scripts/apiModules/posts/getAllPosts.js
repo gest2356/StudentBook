@@ -10,11 +10,20 @@ export default async function  getAllPosts() {
     })
 
     const data = await res.json()
+    
+    if (!data) {
+        console.error("No data provided");
+        return;
+    }
+    
     console.log(data)
     const posts = []
 
     data.forEach((rawData) => {
-        let newUser = new Post(rawData.post_id, rawData.title, rawData.content, rawData.created_at, rawData.user_id);
+        let date = new Date(rawData.created_at)
+        let formatedDate = date.toLocaleDateString("en-US");
+
+        let newUser = new Post(rawData.post_id, rawData.title, rawData.content, formatedDate, rawData.author ,rawData.user_id);
         posts.push(newUser)
     })
 

@@ -17,7 +17,7 @@ export async function connectToMySQL() {
     }
 }
 
-export async function queryMySQL(pool, query, params) {
+export async function queryMySQL(query, params) {
     const [rows] = await pool.query(query, params);
     return rows;
 }

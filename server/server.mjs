@@ -24,6 +24,7 @@ const port = 3000
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+    connectToMySQL();
 })
 
 app.get('/', (req, res) => {
@@ -37,7 +38,6 @@ app.post('/api/users/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     console.log(password);
-    const pool = await connectToMySQL()
 
     const response = await queryMySQL(pool,
         'INSERT INTO users (first_name, last_name, age, gender, password_hash) VALUE (? ,?, ?, ?, ?)',
@@ -49,9 +49,7 @@ app.post('/api/users/register', async (req, res) => {
 app.post('/api/users/login', async (req, res) => {
     const {firstName, lastName ,password} = req.body;
 
-    const pool = await connectToMySQL()
-
-    const response = await queryMySQL(pool,
+    const response = await queryMySQL(
         'SELECT * FROM users WHERE first_name = ? AND last_name = ? LIMIT 1',
         [firstName, lastName]);
 
@@ -97,8 +95,8 @@ app.post('/api/users/logout', async (req, res) => {
 
 
 app.get('/api/posts/getall', async (req, res) => {
-    const pool = await connectToMySQL()
-    const response = await queryMySQL(pool, 'SELECT * FROM posts')
+    const response = await queryMySQL("SELECT p.*, CONCAT(u.first_name, ' ', u.last_name) AS author FROM users u INNER JOIN posts p ON p.user_id = u.user_id")
+    console.log(response)
 
     res.json(response);
 })
