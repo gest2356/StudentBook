@@ -40,6 +40,22 @@ export async function  displayAllPosts() {
             postContainter.appendChild(delButton);
         }
 
+        const commentsButton = document.createElement("button");
+        commentsButton.innerHTML = 'See comments';
+        commentsButton.classList.add("comments-button");
+
+        const commentsContainer = document.createElement("div");
+        commentsContainer.classList.add("comments-container");
+       // commentsContainer.style.display = "none";
+
+        const commentsEditor = document.createElement("div");
+        commentsEditor.classList.add('comments-editor');
+        commentsContainer.appendChild(commentsEditor);
+
+        postContainter.appendChild(commentsButton)
+        postContainter.appendChild(commentsContainer);
+
+
         let likeStatus = await getLikeStatus(post.postId);
 
         if (likeStatus === true) {

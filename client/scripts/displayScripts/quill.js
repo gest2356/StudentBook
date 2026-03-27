@@ -1,4 +1,5 @@
 ﻿let quillInstance;
+let quillCommentInstance = [];
 
 export function initialize() {
     const editorElement = document.querySelector('#post-editor-container');
@@ -17,6 +18,27 @@ export function initialize() {
             }
         });
     }
+}
+
+export function initCommentsEditor() {
+    let editorElement = document.querySelectorAll('.comments-editor');
+
+    editorElement.forEach(el => {
+        const instanceOfComment = new window.Quill(el, {
+            theme: 'snow',
+            placeholder: 'write something smart :)',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['link'],
+                ]
+            }
+        });
+
+        quillCommentInstance.push(instanceOfComment);
+    })
+
 }
 
 export function getTextFromQuill() {

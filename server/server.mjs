@@ -39,7 +39,7 @@ app.post('/api/users/register', async (req, res) => {
 
     console.log(password);
 
-    const response = await queryMySQL(pool,
+    const response = await queryMySQL(
         'INSERT INTO users (first_name, last_name, age, gender, password_hash) VALUE (? ,?, ?, ?, ?)',
         [firstName, lastName, age,gender,hashedPassword])
 
