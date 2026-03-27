@@ -124,6 +124,26 @@ app.post('/api/posts/postnew', verifyToken, async (req, res) => {
     res.send(response);
 })
 
+app.post('/api/posts/like', verifyToken, async (req, res) => {
+    const {postId} = req.body;
+    const userId = req.user._user_id
+
+
+     const response = queryMySQL("INSERT INTO user_post_likes(user_id, post_id) values (?,?)", [userId, postId]);
+
+    res.send(response);
+})
+
+app.delete('/api/posts/unlike', verifyToken, async (req, res) => {
+    const {postId} = req.body;
+    const userId = req.user._user_id
+
+    const response = queryMySQL("DELETE FROM user_post_likes WHERE user_id = ? AND post_id = ? ", [userId, postId]);
+
+    res.send(response);
+})
+
+
 app.post('/api/postLikes/likestatus',  async (req, res) => {
     const {postId, userId} = req.body;
 

@@ -44,8 +44,10 @@ export async function  displayAllPosts() {
 
         if (likeStatus === true) {
             likeStatusP.innerHTML = 'Liked!';
+            likeStatusP.dataset.state = 'liked'
         } else {
             likeStatusP.innerHTML = 'like?';
+            likeStatusP.dataset.state = 'notLiked'
         }
 
         likeStatusP.classList.add("like-button");
