@@ -12,7 +12,7 @@ export function initialize() {
                 toolbar: [
                     ['bold', 'italic', 'underline'],
                     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                    ['link']
+                    ['link', 'image'],
                 ]
             }
         });

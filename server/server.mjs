@@ -123,3 +123,17 @@ app.post('/api/posts/postnew', verifyToken, async (req, res) => {
 
     res.send(response);
 })
+
+app.post('/api/postLikes/likestatus',  async (req, res) => {
+    const {postId, userId} = req.body;
+
+    const response = await queryMySQL('SELECT * FROM user_post_likes WHERE post_id = ? AND user_id = ?', [postId, userId]);
+
+
+
+    if (response[0].user_id === userId && response[0].post_id === postId) {
+        res.status(200).json({massage: "JESJES"})
+    } else res.status(404).json({message: `User does not exist: ${postId}`});
+
+
+})
