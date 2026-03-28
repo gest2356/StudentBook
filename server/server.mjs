@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'http://localhost:63343',
+    origin: 'http://localhost:63342',
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -167,4 +167,11 @@ app.post('/api/comments/newcomment', verifyToken, async (req, res) => {
     const response = queryMySQL('INSERT INTO comments(user_id, post_id, content) VALUES (?,?,?)', [userId, id, text])
 
     res.send(response.status);
+})
+
+app.post('/api/comments/getcommentsforpost', async (req, res) => {
+    const {postId} = req.body;
+
+    const response = await queryMySQL("SELECT c.*, CONCAT(u.first_name, ' ', u.last_name) AS author FROM comments c INNER JOIN users u ON c.user_id = u.user_id WHERE c.post_id = ?", [postId]);
+    res.send(response);
 })
