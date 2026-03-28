@@ -6,6 +6,7 @@ export async function  displayAllPosts() {
     const postContainerAll = document.getElementById('post-container');
     const posts = await getAllPosts();
     const user = await getAuth()
+    let commentsForCounter = 0
 
     for (const post of posts) {
         const postTitleP = document.createElement("h2");
@@ -46,12 +47,18 @@ export async function  displayAllPosts() {
 
         const commentsContainer = document.createElement("div");
         commentsContainer.classList.add("comments-container");
-       // commentsContainer.style.display = "none";
+        commentsContainer.style.display = "none";
+        commentsContainer.dataset.comId = commentsForCounter.toString();
 
         const commentsEditor = document.createElement("div");
         commentsEditor.classList.add('comments-editor');
         commentsContainer.appendChild(commentsEditor);
 
+        const postCommentButton = document.createElement("button");
+        postCommentButton.innerHTML = 'Post comment';
+        postCommentButton.classList.add("comment-post-button");
+
+        commentsContainer.appendChild(postCommentButton);
         postContainter.appendChild(commentsButton)
         postContainter.appendChild(commentsContainer);
 
@@ -68,5 +75,7 @@ export async function  displayAllPosts() {
 
         likeStatusP.classList.add("like-button");
         postContainter.appendChild(likeStatusP);
+
+        commentsForCounter++;
     }
 }

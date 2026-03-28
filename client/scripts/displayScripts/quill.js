@@ -39,6 +39,11 @@ export function initCommentsEditor() {
         quillCommentInstance.push(instanceOfComment);
     })
 
+    console.log();
+}
+
+export function getTextFromQuillInstance(id) {
+    return quillCommentInstance[id].root.innerHTML
 }
 
 export function getTextFromQuill() {

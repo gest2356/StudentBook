@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'http://localhost:63342',
+    origin: 'http://localhost:63343',
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -158,4 +158,13 @@ app.post('/api/postLikes/likestatus',  async (req, res) => {
     if (response[0].user_id === userId && response[0].post_id === postId) {
         res.status(200).json({massage: "JESJES"})
     } else res.status(404).json({message: `User does not exist: ${postId}`});
+})
+
+app.post('/api/comments/newcomment', verifyToken, async (req, res) => {
+    const {id, text} = req.body;
+    const userId = req.user._user_id
+
+    const response = queryMySQL('INSERT INTO comments(user_id, post_id, content) VALUES (?,?,?)', [userId, id, text])
+
+    res.send(response.status);
 })

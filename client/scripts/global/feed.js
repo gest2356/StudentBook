@@ -5,6 +5,8 @@ import {getPostToDelete} from "../listeningScripts/getPostToDelete.js";
 import {initCommentsEditor, initialize} from "./../displayScripts/quill.js";
 import {getPostToPost} from "../listeningScripts/getPostToPost.js";
 import {operateLikeButton} from "../listeningScripts/operateLikeButton.js";
+import displayComments from "../listeningScripts/displayComments.js";
+import {getCommentToPost} from "./../listeningScripts/getCommentToPost.js";
 
 await getAllPosts();
 await renderNavBar()
@@ -16,3 +18,6 @@ initCommentsEditor()
 await getPostToPost()
 
 await operateLikeButton()
+
+displayComments()
+getCommentToPost()
