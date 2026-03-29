@@ -14,6 +14,7 @@ export async function  displayAllPosts() {
         const postContentP = document.createElement("p");
         const postCreatedAtSpan = document.createElement("span");
         const likeStatusP = document.createElement("p");
+        const likeCountP = document.createElement("p");
 
         postTitleP.innerHTML = post.title;
         postAuthorSpan.innerHTML = post.author;
@@ -73,8 +74,13 @@ export async function  displayAllPosts() {
             likeStatusP.dataset.state = 'notLiked'
         }
 
+        likeCountP.innerHTML = `Likes: ${post.likes}`;
+        postContainter.appendChild(likeCountP);
+
         likeStatusP.classList.add("like-button");
         postContainter.appendChild(likeStatusP);
+
+
 
         commentsForCounter++;
     }

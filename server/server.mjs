@@ -93,9 +93,14 @@ app.post('/api/users/logout', async (req, res) => {
     }).json({ message: 'Logged out' });
 })
 
+app.get('/api/users/all', async (req, res) => {
+    const response = await queryMySQL("SELECT u.user_id, u.first_name, u.last_name, u.age, u.gender, COUNT(p.post_id) AS postCount FROM users u LEFT JOIN posts p ON p.user_id = u.user_id GROUP BY u.user_id, u.first_name, u.last_name, u.age, u.gender ORDER BY u.last_name ASC")
+
+    res.json(response);
+})
 
 app.get('/api/posts/getall', async (req, res) => {
-    const response = await queryMySQL("SELECT p.*, CONCAT(u.first_name, ' ', u.last_name) AS author FROM users u INNER JOIN posts p ON p.user_id = u.user_id")
+    const response = await queryMySQL("SELECT p.*, CONCAT(u.first_name, ' ', u.last_name) AS author, COUNT(upl.user_id) as likes FROM users u INNER JOIN posts p ON p.user_id = u.user_id LEFT JOIN user_post_likes upl ON p.post_id = upl.post_id GROUP BY p.user_id, p.post_id, p.title, p.content, p.created_at, CONCAT(u.first_name, ' ', u.last_name)")
 
     res.json(response);
 })
@@ -143,6 +148,15 @@ app.delete('/api/posts/unlike', verifyToken, async (req, res) => {
     res.send(response);
 })
 
+app.post('/api/posts/getpostsforuser', async (req, res) => {
+    const {userId} = req.body
+
+    const response = await queryMySQL("SELECT p.*, count(upl.user_id) AS likes FROM posts p left join user_post_likes upl ON p.post_id = upl.post_id WHERE p.user_id = ? GROUP BY p.user_id, p.post_id, p.title, p.content, p.created_at", [userId]);
+
+
+    res.send(response);
+})
+
 
 app.post('/api/postLikes/likestatus',  async (req, res) => {
     const {postId, userId} = req.body;
@@ -173,5 +187,23 @@ app.post('/api/comments/getcommentsforpost', async (req, res) => {
     const {postId} = req.body;
 
     const response = await queryMySQL("SELECT c.*, CONCAT(u.first_name, ' ', u.last_name) AS author FROM comments c INNER JOIN users u ON c.user_id = u.user_id WHERE c.post_id = ?", [postId]);
+    res.send(response);
+})
+
+app.delete('/api/comments/delete', verifyToken, async (req, res) => {
+    const {commentId} = req.body;
+    const userId = req.user._user_id
+
+    const response = queryMySQL('DELETE FROM comments WHERE comment_id = ? AND user_id = ?', [commentId, userId]);
+
+   res.send(response);
+
+})
+
+app.post('/api/comments/getpostsforuser', async (req, res) => {
+    const {userId} = req.body;
+
+    const response = await queryMySQL("SELECT c.*, p.title as postTitle FROM comments c INNER JOIN posts p ON c.post_id = p.post_id WHERE c.user_id = ?", [userId]);
+
     res.send(response);
 })

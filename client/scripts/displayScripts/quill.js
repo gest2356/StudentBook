@@ -1,7 +1,7 @@
 ﻿let quillInstance;
 let quillCommentInstance = [];
 
-export function initialize() {
+export async function initialize() {
     const editorElement = document.querySelector('#post-editor-container');
 
     if (editorElement) {
@@ -20,7 +20,7 @@ export function initialize() {
     }
 }
 
-export function initCommentsEditor() {
+export async function initCommentsEditor() {
     let editorElement = document.querySelectorAll('.comments-editor');
 
     editorElement.forEach(el => {
@@ -39,7 +39,6 @@ export function initCommentsEditor() {
         quillCommentInstance.push(instanceOfComment);
     })
 
-    console.log();
 }
 
 export function getTextFromQuillInstance(id) {

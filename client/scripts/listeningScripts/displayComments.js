@@ -6,8 +6,13 @@ export default async function displayComments() {
         button.addEventListener("click", async (e) => {
             e.preventDefault();
 
-            const commentsBox = e.target.parentElement.children[6];
+            const commentsBox = e.target.parentElement.querySelector(".comments-container");
+
+            console.log(commentsBox);
+
             const clickedPostComment = e.target.parentElement.getAttribute('data-id')
+
+
 
             if (commentsBox.getAttribute("style") === "display: none;") {
                 commentsBox.style.display = "block";

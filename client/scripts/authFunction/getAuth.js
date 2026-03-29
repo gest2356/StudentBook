@@ -6,6 +6,7 @@ export async function getAuth() {
     });
 
     if (!res.ok) {
+        return null;
         throw new Error(res.statusText);
     }
 

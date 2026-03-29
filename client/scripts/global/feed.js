@@ -7,17 +7,21 @@ import {getPostToPost} from "../listeningScripts/getPostToPost.js";
 import {operateLikeButton} from "../listeningScripts/operateLikeButton.js";
 import displayComments from "../listeningScripts/displayComments.js";
 import {getCommentToPost} from "./../listeningScripts/getCommentToPost.js";
+import {chackForAuth} from "../authFunction/chackForAuth.js";
+import {getCommentToDelete} from "./../listeningScripts/getCommentToDelete.js";
+
+await chackForAuth()
 
 await getAllPosts();
 await renderNavBar()
 await displayAllPosts();
 getPostToDelete()
 
-initialize();
-initCommentsEditor()
+await initialize();
+await initCommentsEditor()
 await getPostToPost()
 
 await operateLikeButton()
 
-displayComments()
+await displayComments()
 getCommentToPost()

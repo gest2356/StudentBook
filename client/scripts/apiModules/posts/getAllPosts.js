@@ -23,7 +23,7 @@ export default async function  getAllPosts() {
         let date = new Date(rawData.created_at)
         let formatedDate = date.toLocaleDateString("en-US");
 
-        let newUser = new Post(rawData.post_id, rawData.title, rawData.content, formatedDate, rawData.author ,rawData.user_id);
+        let newUser = new Post(rawData.post_id, rawData.title, rawData.content, formatedDate, rawData.author ,rawData.user_id, rawData.likes);
         posts.push(newUser)
     })
 
