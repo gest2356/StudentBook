@@ -158,6 +158,15 @@ app.post('/api/posts/getpostsforuser', async (req, res) => {
 })
 
 
+app.post('/api/posts/getuserslikedposts', async (req, res) => {
+    const {userId} = req.body
+
+    const response = await queryMySQL("SELECT p.*, CONCAT(u.first_name, ' ', u.last_name) as author, count(upl.user_id) AS likes FROM posts p left join user_post_likes upl ON p.post_id = upl.post_id INNER JOIN users u ON p.user_id = u.user_id WHERE upl.user_id = ? GROUP BY p.user_id, p.post_id, p.title, p.content, p.created_at", [userId]);
+
+    res.send(response);
+})
+
+
 app.post('/api/postLikes/likestatus',  async (req, res) => {
     const {postId, userId} = req.body;
 

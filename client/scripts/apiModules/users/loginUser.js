@@ -38,7 +38,8 @@ export default async function loginUser() {
 
 
         if (res.status === 200) {
-            putNewMassage("login successful", "green");
+            await putNewMassage("login successful", "green");
+            window.location.reload();
         } else {
             putNewMassage("login failed", "red");
         }

@@ -1,11 +1,13 @@
 ﻿import {displayUsersPosts} from "../displayScripts/displayUsersPosts.js";
 import {displayUsersComments} from "../displayScripts/displayUsersComments.js";
+import {displayUsersLikedPosts} from "../displayScripts/displayUsersLikedPosts.js";
 
 export function getUserIdForPosts() {
     const seeInfoButton = document.querySelectorAll('.user-info-button');
 
     const postContainerAll = document.getElementById("user-posts-container");
     const commentContainerAll = document.getElementById("users-comments-on-posts-container");
+    const likedPostContainerAll = document.getElementById("users-liked-posts-container");
 
 
     seeInfoButton.forEach(button => {
@@ -25,12 +27,20 @@ export function getUserIdForPosts() {
                 })
             }
 
+            if (likedPostContainerAll.children.length > 0) {
+                const likedPosts = likedPostContainerAll.querySelectorAll('.liked-post');
+                likedPosts.forEach(post => {
+                    likedPostContainerAll.removeChild(post);
+                })
+            }
+
             e.preventDefault();
 
             const userIdToSeeInfo = e.target.parentElement.getAttribute('data-id')
 
             const responseForPosts = displayUsersPosts(userIdToSeeInfo);
             const responseForComments = displayUsersComments(userIdToSeeInfo);
+            const responseForLikedPosts = displayUsersLikedPosts(userIdToSeeInfo);
         })
     })
 }

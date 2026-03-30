@@ -112,3 +112,31 @@
 h1 {
     margin: 10px;
 }
+
+.liked-post {
+    padding: 10px;
+    border: orange solid 1px;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.liked-post * {
+    text-align: center;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#sers-comments-on-posts-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: darkcyan solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    margin-top: 20px;
+}
