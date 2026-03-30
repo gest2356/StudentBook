@@ -17,9 +17,11 @@ export async function  displayAllPosts() {
         const likeCountP = document.createElement("p");
 
         postTitleP.innerHTML = post.title;
+        postTitleP.classList.add("post-title-p");
         postAuthorSpan.innerHTML = post.author;
         postAuthorSpan.dataset.id = post.userId;
         postContentP.innerHTML = post.content;
+        postContentP.classList.add("post-content-p");
         postCreatedAtSpan.innerHTML = post.createdAt;
 
         const postContainter = document.createElement("div");
@@ -30,16 +32,22 @@ export async function  displayAllPosts() {
         postContainter.appendChild(postCreatedAtSpan);
         postContainter.appendChild(postContentP);
 
+
         postContainter.classList.add("post");
 
         postContainerAll.appendChild(postContainter);
 
         if (user.id == postAuthorSpan.getAttribute("data-id")) {
-            console.log("věc");
             let delButton = document.createElement("button");
             delButton.innerHTML = 'Delete';
             delButton.classList.add("delete-button");
             postContainter.appendChild(delButton);
+
+            const editButton = document.createElement("button");
+            editButton.classList.add("edit-button");
+            editButton.innerHTML = "Edit";
+
+            postTitleP.before(editButton);
         }
 
         const commentsButton = document.createElement("button");

@@ -216,3 +216,13 @@ app.post('/api/comments/getpostsforuser', async (req, res) => {
 
     res.send(response);
 })
+
+app.post('/api/posts/updatepost', verifyToken, async (req, res) => {
+    const {postId, postTitle, postContent} = req.body;
+    const userId = req.user._user_id
+
+    const response = await queryMySQL('UPDATE posts SET title = ?, content = ? WHERE user_id = ? AND post_id = ?', [postTitle, postContent, userId, postId]);
+    console.log(response)
+
+    res.send(response);
+})

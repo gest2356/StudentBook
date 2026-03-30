@@ -9,6 +9,7 @@ import displayComments from "../listeningScripts/displayComments.js";
 import {getCommentToPost} from "./../listeningScripts/getCommentToPost.js";
 import {chackForAuth} from "../authFunction/chackForAuth.js";
 import {getCommentToDelete} from "./../listeningScripts/getCommentToDelete.js";
+import {getPostToEdit} from "../listeningScripts/getPostToEdit.js";
 
 await chackForAuth()
 
@@ -25,3 +26,5 @@ await operateLikeButton()
 
 await displayComments()
 getCommentToPost()
+
+await getPostToEdit()
