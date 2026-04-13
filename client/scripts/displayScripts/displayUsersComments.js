@@ -7,8 +7,6 @@ export async function displayUsersComments(userIdToSeeInfo) {
 
     const comments = await getCommentsForUser(userIdToSeeInfo)
 
-    console.log(comments);
-
     comments.forEach(comment => {
         const commentPostTitleP = document.createElement("p");
         const commentContentP = document.createElement("p");
