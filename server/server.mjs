@@ -49,6 +49,7 @@ app.post('/api/users/register', async (req, res) => {
 app.post('/api/users/login', async (req, res) => {
     const {firstName, lastName ,password} = req.body;
 
+
     const response = await queryMySQL(
         'SELECT * FROM users WHERE first_name = ? AND last_name = ? LIMIT 1',
         [firstName, lastName]);
@@ -166,6 +167,13 @@ app.post('/api/posts/getuserslikedposts', async (req, res) => {
     res.send(response);
 })
 
+app.post('/api/posts/getlikesforusers', async (req, res) => {
+    const {postId} = req.body;
+
+    const response = await queryMySQL("SELECT CONCAT(u.first_name, ' ', u.last_name) AS userName FROM users u INNER JOIN user_post_likes upl ON u.user_id = upl.user_id WHERE upl.post_id = ?", [postId]);
+
+    res.send(response);
+})
 
 app.post('/api/postLikes/likestatus',  async (req, res) => {
     const {postId, userId} = req.body;

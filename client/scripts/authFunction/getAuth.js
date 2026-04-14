@@ -11,5 +11,6 @@ export async function getAuth() {
     }
 
     const userData = await res.json()
+    console.log(userData);
     return userData;
 }

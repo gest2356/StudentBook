@@ -83,6 +83,7 @@ export async function  displayAllPosts() {
         }
 
         likeCountP.innerHTML = `Likes: ${post.likes}`;
+        likeCountP.classList.add("likes-count");
         postContainter.appendChild(likeCountP);
 
         likeStatusP.classList.add("like-button");

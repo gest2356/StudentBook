@@ -10,6 +10,7 @@ import {getCommentToPost} from "./../listeningScripts/getCommentToPost.js";
 import {chackForAuth} from "../authFunction/chackForAuth.js";
 import {getCommentToDelete} from "./../listeningScripts/getCommentToDelete.js";
 import {getPostToEdit} from "../listeningScripts/getPostToEdit.js";
+import {getPostToDisplayUserLikes} from "../displayScripts/getPostToDisplayUserLikes.js";
 
 await chackForAuth()
 
@@ -28,3 +29,5 @@ await displayComments()
 getCommentToPost()
 
 await getPostToEdit()
+
+getPostToDisplayUserLikes()
