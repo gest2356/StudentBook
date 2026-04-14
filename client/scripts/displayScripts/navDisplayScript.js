@@ -5,7 +5,6 @@ export async function  renderNavBar() {
     const navbar = document.getElementById("navbar");
     const navList = document.getElementById("nav-list");
 
-    console.log("max sem");
     let user = await getAuth();
     
     if (user && user.id) {
