@@ -12,8 +12,6 @@ export default async function displayComments() {
 
             const clickedPostComment = e.target.parentElement.getAttribute('data-id')
 
-
-
             if (commentsBox.getAttribute("style") === "display: none;") {
                 commentsBox.style.display = "block";
                 await renderComments(clickedPostComment, commentsBox);

@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: black;
+}
+
+
+#form-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.form-item {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#register-form fieldset {
+    color: darkorange;
+    border: darkorange solid 1px;
+
+}
+
+#login-form fieldset {
+    color: darkorange;
+    border: darkorange solid 1px;
+
+}
+
+#register-form button {
+    margin-top: 10px;
+    border: darkcyan solid 2px;
+    border-radius: 5px;
+}
+
+#login-form button {
+    margin-top: 10px;
+    border: darkcyan solid 2px;
+    border-radius: 5px;
+}
+
+#register-form input {
+    border: darkcyan solid 2px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#login-form input {
+    border: darkcyan solid 2px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#massage-box {
+    z-index: 999;
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px 10px 10px;
+}
+
+#massage {
+    color: white;
+}
+
+#nav-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav-item {
+    border: 1px solid darkorange;
+    padding: 10px;
+    background-color: darkorange;
+    width: 20%;
+    text-align: center;
+    height: fit-content;
+    min-height: 100px;
+    font-size: 40px;
+}
+
+.nav-item p {
+    background-color: darkorange;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    color: darkcyan;
+}
+
+button {
+    border-radius: 5px;
+    padding: 1rem;
+}

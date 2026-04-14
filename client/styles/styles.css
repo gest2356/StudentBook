@@ -1,122 +1,150 @@
-* {
-    box-sizing: border-box;
+/* Základní reset a barvy */
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --input-bg: #334155;
+    --border-color: #475569;
+    --text-main: #f8fafc;
+    --accent-blue: #2563eb;
+    --accent-hover: #1d4ed8;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    color: white;
-    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
-
-#form-container {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
+/* Navigace */
+#navbar {
     width: 100%;
-}
-
-.form-item {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-}
-
-#register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#register-form fieldset {
-    color: darkorange;
-    border: darkorange solid 1px;
-
-}
-
-#login-form fieldset {
-    color: darkorange;
-    border: darkorange solid 1px;
-
-}
-
-#register-form button {
-    margin-top: 10px;
-    border: darkcyan solid 2px;
-    border-radius: 5px;
-}
-
-#login-form button {
-    margin-top: 10px;
-    border: darkcyan solid 2px;
-    border-radius: 5px;
-}
-
-#register-form input {
-    border: darkcyan solid 2px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-#login-form input {
-    border: darkcyan solid 2px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-#massage-box {
-    z-index: 999;
-    position: fixed;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 10px 10px 10px;
-}
-
-#massage {
-    color: white;
+    background-color: var(--card-bg);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 #nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#login-container {
+    width: 50%;
+}
+
+#register-container {
+    width: 50%;
+}
+
+/* Kontejner pro formuláře */
+#form-container {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-around;
+    gap: 2rem;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Společný styl pro oba formuláře */
+form {
+    background-color: var(--card-bg) !important; /* Přepisuje inline třídy */
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+/* Položky formuláře */
+.form-item {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box; /* Důležité pro padding */
+    transition: border-color 0.2s, outline 0.2s;
+}
+
+input:focus {
+    outline: 2px solid var(--accent-blue);
+    border-color: transparent;
+}
+
+/* Tlačítka */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Zprávy (např. chybové) */
+#messages {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .nav-item {
-    border: 1px solid darkorange;
-    padding: 10px;
-    background-color: darkorange;
-    width: 20%;
-    text-align: center;
-    height: fit-content;
-    min-height: 100px;
-    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background 0.2s;
 }
 
-.nav-item p {
-    background-color: darkorange;
+a.nav-item:hover {
+    background-color: var(--input-bg);
 }
 
-.nav-item:hover {
-    text-decoration: underline;
-    color: darkcyan;
-}
-
-button {
-    border-radius: 5px;
-    padding: 1rem;
-}
+#nav-list p { margin: 0; align-self: center; }

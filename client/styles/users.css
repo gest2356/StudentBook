@@ -1,145 +1,132 @@
-﻿
-#user-info {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    border: darkcyan solid 1px;
-    border-radius: 10px;
-    padding: 10px;
-    width: fit-content;
-    margin-top: 20px;
-}
-
+﻿/* Hlavní kontejner stránky uživatelů */
 #user-info-container {
-
-    margin-top: 20px;
-}
-
-.user-card {
-    padding: 10px;
-    border: orange solid 1px;
-    border-radius: 10px;
-    width: 10vw;
-    height: fit-content;
-}
-
-.user-card * {
-    text-align: center;
-    font-size: x-large;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.user-card:hover {
-    box-shadow: 10px 10px 10px #000;
-}
-
-
-#user-posts-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    border: darkcyan solid 1px;
-    border-radius: 10px;
-    padding: 10px;
-    width: fit-content;
-    margin-top: 20px;
-}
-
-#user-info-container {
-    margin-top: 20px;
-}
-
-.post {
-    padding: 10px;
-    border: orange solid 1px;
-    border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
-    overflow-wrap: anywhere;
-}
-
-.post * {
-    text-align: center;
-    font-size: x-large;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.post:hover {
-    box-shadow: 10px 10px 10px #000;
-}
-
-#users-comments-on-posts-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    border: darkcyan solid 1px;
-    border-radius: 10px;
-    padding: 10px;
-    width: fit-content;
-    margin-top: 20px;
-}
-
-#user-info-container {
-    margin-top: 20px;
-}
-
-.comment {
-    padding: 10px;
-    border: orange solid 1px;
-    border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
-    overflow-wrap: anywhere;
-}
-
-.comment * {
-    text-align: center;
-    font-size: x-large;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.comment:hover {
-    box-shadow: 10px 10px 10px #000;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 h1 {
-    margin: 10px;
+    color: var(--text-main);
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: 10px;
+    margin-top: 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.liked-post {
-    padding: 10px;
-    border: orange solid 1px;
-    border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
-    overflow-wrap: anywhere;
+/* Mřížka pro karty uživatelů */
+#user-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
-.liked-post * {
+/* Jednotlivá karta uživatele */
+.user-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
     text-align: center;
-    font-size: x-large;
-    margin-top: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.user-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.user-card p:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent-blue);
     margin-bottom: 10px;
 }
 
-#sers-comments-on-posts-container {
+.user-card p {
+    margin: 5px 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.user-info-button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.user-info-button:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Sekce postů, komentářů a lajků pod seznamem */
+#user-posts-container,
+#users-comments-on-posts-container,
+#users-liked-posts-container {
     display: flex;
-    flex-direction: row;
-    gap: 10px;
     flex-wrap: wrap;
-    align-items: center;
-    border: darkcyan solid 1px;
-    border-radius: 10px;
-    padding: 10px;
-    width: fit-content;
-    margin-top: 20px;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Posty v profilu (zmenšené verze) */
+.post, .liked-post {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 1.2rem;
+    width: 100%;
+    max-width: 350px;
+}
+
+.post h2, .liked-post h2 {
+    font-size: 1.2rem;
+    color: var(--accent-blue);
+    margin-top: 0;
+}
+
+.post span, .liked-post span {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Stylování komentářů ve výpisu */
+.comment {
+    background-color: var(--input-bg);
+    border-left: 4px solid var(--accent-blue);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.comment p:first-child {
+    font-weight: bold;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+}
+
+.comment span {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.comment p:last-child {
+    margin-top: 8px;
+    color: var(--text-main);
 }

@@ -1,0 +1,145 @@
+﻿
+#user-info {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: darkcyan solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+#user-info-container {
+
+    margin-top: 20px;
+}
+
+.user-card {
+    padding: 10px;
+    border: orange solid 1px;
+    border-radius: 10px;
+    width: 10vw;
+    height: fit-content;
+}
+
+.user-card * {
+    text-align: center;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.user-card:hover {
+    box-shadow: 10px 10px 10px #000;
+}
+
+
+#user-posts-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: darkcyan solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+#user-info-container {
+    margin-top: 20px;
+}
+
+.post {
+    padding: 10px;
+    border: orange solid 1px;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    overflow-wrap: anywhere;
+}
+
+.post * {
+    text-align: center;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post:hover {
+    box-shadow: 10px 10px 10px #000;
+}
+
+#users-comments-on-posts-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: darkcyan solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+#user-info-container {
+    margin-top: 20px;
+}
+
+.comment {
+    padding: 10px;
+    border: orange solid 1px;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    overflow-wrap: anywhere;
+}
+
+.comment * {
+    text-align: center;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment:hover {
+    box-shadow: 10px 10px 10px #000;
+}
+
+h1 {
+    margin: 10px;
+}
+
+.liked-post {
+    padding: 10px;
+    border: orange solid 1px;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    overflow-wrap: anywhere;
+}
+
+.liked-post * {
+    text-align: center;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#sers-comments-on-posts-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: darkcyan solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    margin-top: 20px;
+}
